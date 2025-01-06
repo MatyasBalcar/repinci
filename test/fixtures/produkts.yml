@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cena: 1
+  obrazek: MyString
+  popis: MyText
+  velikost: MyString
+  barva: MyString
+
+two:
+  cena: 1
+  obrazek: MyString
+  popis: MyText
+  velikost: MyString
+  barva: MyString

@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+
+
+<div class="container">
+  <h1 class="text-center">Produkty</h1>
+  <div class="row">
+
+    <% @produkts.each do |produkt| %>
+      <div class="col-lg-3  mb-4"> <!-- Each card takes 1/3 of the row on medium+ screens -->
+        <div class="card" style="background-color: #d9d9d9;width: 100%; min-height: 30rem"> <!-- Set card width to 100% to fill the column -->
+          <img class="card-img-top" src="<%= produkt.obrazek %>" alt="neni obrazek"   onerror="this.onerror=null; this.src='/repinek.png';">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= produkt.nazev %>
+            </h5>
+            <p class="card-text">
+              <%= produkt.popis %>
+            </p>
+            <p style="font-weight: bold">
+              <%= produkt.cena %> Kč
+            </p>
+            <%= link_to "Zobrazit produkt ", produkt_path(produkt) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%#= link_to "New produkt", new_produkt_path %>
