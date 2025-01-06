@@ -1,0 +1,26 @@
+<h1>Koupit: <%= @produkt.nazev %></h1>
+
+<%= form_with url: "/orders", method: :post do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, "Vaše jméno" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :address, "Vaše adresa" %>
+    <%= f.text_area :address, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :quantity, "Počet kusů (skladem: "  +  @produkt.pocet.to_s + " )"%>
+    <%= f.number_field :quantity, value: 1, class: "form-control", required: true, min: 1, max: @produkt.pocet %>
+  </div>
+
+  <%= hidden_field_tag :produkt_id, @produkt.id %>
+
+  <div class="mb-3">
+    <%= f.submit "Odeslat objednávku", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "Zpátky", produkt_path(@produkt), class: "btn btn-outline-secondary" %>

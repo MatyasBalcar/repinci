@@ -1,0 +1,26 @@
+<h1 style="text-align: center">Objednavky</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>#ID</th>
+    <th>Jmeno</th>
+    <th>Adresa</th>
+    <th>Pocet</th>
+    <th>Produkt</th>
+    <th>Objednavka zadana</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.name %></td>
+      <td><%= order.address %></td>
+      <td><%= order.quantity %></td>
+      <td><%= order.produkt.nazev %></td>
+      <td><%= order.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

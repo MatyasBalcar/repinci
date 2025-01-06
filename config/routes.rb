@@ -9,5 +9,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :produkts
+  resources :produkts do
+    member do
+      get 'purchase'
+    end
+  end
+  resources :orders, only: [:create, :index]
+
 end
