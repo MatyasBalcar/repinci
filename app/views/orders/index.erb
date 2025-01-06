@@ -18,7 +18,7 @@
     <th>Kontakty</th>
     <th>Pocet</th>
     <th>Produkt</th>
-    <th>Objednavka zadana</th>
+    <th>Datum</th>
     <th>Akce</th> <!-- Action column -->
     <th>Stav objednavky</th>
   </tr>
@@ -41,10 +41,11 @@
         <%if order.created? %>
           <%= button_to "Odeslat", change_to_sent_order_path(order), method: :patch, class: "btn btn-primary", data: { confirm: "Opravdu odeslat" } %>
         <%elsif order.sent?%>
-          <%= button_to "Dokonceno", change_to_delivered_order_path(order), method: :patch, class: "btn btn-success", data: { confirm: "Opravdu dokoncit" } %>
-        <%else %>
-          <p>Zadne akce</p>
-        <% end %>
+          <%= button_to "Dokoncit", change_to_delivered_order_path(order), method: :patch, class: "btn btn-success", data: { confirm: "Opravdu dokoncit" } %>
+        <%elsif order.discarded?%>
+          <%= button_to "Trvale smazat", order_path(order), method: :delete, class: "btn btn-danger", data: { confirm: "Opravdu smazat" } %>
+
+      <% end %>
       </td>
       <td><%=order.aasm_state %></td>
     </tr>

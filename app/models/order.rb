@@ -19,8 +19,10 @@ class Order < ApplicationRecord
 
     event :change_to_delivered do
       transitions from: [:sent], to: :delivered
+
+      after do
+        self.discard!
+      end
     end
-
   end
-
 end

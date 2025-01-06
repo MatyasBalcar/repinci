@@ -25,6 +25,18 @@ class OrdersController < ApplicationController
       redirect_back fallback_location: produkts_path, alert: "Chyba při odesílání objednávky."
     end
   end
+
+
+  def destroy
+    @order = Order.find(params[:id])
+
+    if @order.destroy
+      redirect_to orders_path(show_discarded: 1), notice: "Objednávka byla trvale smazána."
+    else
+      redirect_to orders_path(show_discarded: 1), alert: "Nepodařilo se smazat objednávku."
+    end
+  end
+
   def discard
     @order = Order.find(params[:id])
 
