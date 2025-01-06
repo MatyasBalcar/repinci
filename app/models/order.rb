@@ -5,6 +5,10 @@ class Order < ApplicationRecord
   belongs_to :produkt
   validates :produkt, :quantity, :address, :phone_number, :email, :name ,presence: true
 
+  def get_price
+    quantity * produkt.cena.to_i
+  end
+
   aasm do
     state :created, initial: true
     state :sent, :delivered

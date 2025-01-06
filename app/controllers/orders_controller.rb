@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       produkt.update(pocet: produkt.pocet - @order.quantity)
+      OrderMailer.order_confirmation_email(@order).deliver_now
       redirect_to produkts_path, notice: "Objednávka byla úspěšně odeslána!"
     else
       redirect_back fallback_location: produkts_path, alert: "Chyba při odesílání objednávky."

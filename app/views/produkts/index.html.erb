@@ -20,6 +20,9 @@
             <p style="font-weight: bold">
               <%= produkt.cena %> Kč
             </p>
+            <%if produkt.pocet==0 %>
+            <p style="color:red">Vyprodano</p>
+            <% end %>
             <%= link_to "Zobrazit produkt ", produkt_path(produkt) %>
           </div>
         </div>

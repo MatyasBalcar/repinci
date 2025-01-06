@@ -38,16 +38,15 @@
       <td><%= order.produkt.nazev %></td>
       <td><%= order.created_at.strftime("%d.%m.%Y %H:%M") %></td>
       <td>
-        <%if order.created? %>
+        <% if order.created? %>
           <%= button_to "Odeslat", change_to_sent_order_path(order), method: :patch, class: "btn btn-primary", data: { confirm: "Opravdu odeslat" } %>
-        <%elsif order.sent?%>
+        <% elsif order.sent? %>
           <%= button_to "Dokoncit", change_to_delivered_order_path(order), method: :patch, class: "btn btn-success", data: { confirm: "Opravdu dokoncit" } %>
-        <%elsif order.discarded?%>
-          <%= button_to "Trvale smazat", order_path(order), method: :delete, class: "btn btn-danger", data: { confirm: "Opravdu smazat" } %>
+        <% end %>
 
-      <% end %>
+        <%= button_to "Trvale smazat", order_path(order), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Opravdu smazat" } %>
       </td>
-      <td><%=order.aasm_state %></td>
+      <td><%= order.aasm_state %></td>
     </tr>
   <% end %>
   </tbody>

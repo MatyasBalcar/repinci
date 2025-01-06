@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Potvrzení objenávky číslo <%= @order.id %> </h1>
+<p>Vážený/ná <%= @order.name %>,</p>
+<p>Zaplatte prosim objednavku na ucet cislo 8624640010/5500 a napiste do poznamky jmeno <b><%= @order.name%></b>  a cislo <b><%= @order.id %></b></p>
+<p>Celkova cena: <%=  @order.get_price%> kc</p>
+<p>Pokud máte nějaké otázky, neváhejte se na nás obrátit.</p>
+<p>Děkujeme za objednávku, řepínci</p>
+</body>
+</html>

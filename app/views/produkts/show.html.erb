@@ -21,6 +21,9 @@
         <p class="<%= @produkt.pocet > 0 ? 'text-success' : 'text-dark' %>">
           <strong>Skladem:</strong> <%= @produkt.pocet %> kusu
         </p>
+        <%if @produkt.pocet==0 %>
+          <p style="color:red">Vyprodano</p>
+        <% end %>
         <%if @produkt.pocet>0 %>
           <div class="mb-3">
             <%= link_to "Koupit", purchase_produkt_path(@produkt), class: "btn btn-success" %>
