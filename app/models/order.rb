@@ -11,6 +11,10 @@ class Order < ApplicationRecord
 
     event :change_to_sent do
       transitions from: [:created], to: :sent
+
+      after do
+        OrderMailer.order_sent_email(self).deliver_now
+      end
     end
 
     event :change_to_delivered do

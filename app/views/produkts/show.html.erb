@@ -5,13 +5,11 @@
     <div class="row align-items-start flex-grow-1">
       <!-- Image on the Left -->
       <div class="col-md-4">
-        <img
-          class="card-img-top"
-          style="max-width: 100%; max-height: 500px;"
-          src="<%= @produkt.obrazek %>"
-          alt="neni obrazek"
-          onerror="this.onerror=null; this.src='/repinek.png';"
-        >
+        <% if @produkt.obrazek.attached? %>
+          <%= image_tag @produkt.obrazek, style: "max-width: 300px; max-height: 300px;" %>
+        <% else %>
+          <img class="card-img-top" style="max-width: 300px; max-height: 300px" src="<%= @produkt.obrazek %>" alt="neni obrazek" onerror="this.onerror=null; this.src='/repinek.png';">
+        <% end %>
       </div>
 
       <!-- Content on the Right -->

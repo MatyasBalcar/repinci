@@ -19,9 +19,9 @@
     <%= form.number_field :cena %>
   </div>
 
-  <div>
-    <%= form.label :obrazek, style: "display: block" %>
-    <%= form.text_field :obrazek %>
+  <div class="mb-3">
+    <%= form.label :obrazek, "Nahrát obrázek" %>
+    <%= form.file_field :obrazek, class: "form-control" %>
   </div>
 
   <div>
