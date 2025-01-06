@@ -1,26 +1,47 @@
-<h1>Koupit: <%= @produkt.nazev %></h1>
+<h1  style="text-align: center">Koupit: <%= @produkt.nazev %></h1>
 
-<%= form_with url: "/orders", method: :post do |f| %>
-  <div class="mb-3">
-    <%= f.label :name, "Vaše jméno" %>
-    <%= f.text_field :name, class: "form-control", required: true %>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card" style="margin: 20px 20px 10px; height: 100%; max-width: 500px; min-width: 400px;">
+    <div class="card-body">
+      <%= form_with url: "/orders", method: :post do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "Jmeno a prijmeni" %>
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :address, "Adresa zailkovny" %>
+          <%= f.text_area :address, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :phone_number, "Telefoni cislo" %>
+          <%= f.text_area :phone_number, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :email, "Vas email" %>
+          <%= f.text_area :email, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :instagram, "Instagram" %>
+          <%= f.text_area :instagram, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :quantity, "Počet kusů (skladem: " + @produkt.pocet.to_s + " )" %>
+          <%= f.number_field :quantity, value: 1, class: "form-control", required: true, min: 1, max: @produkt.pocet %>
+        </div>
+
+        <%= hidden_field_tag :produkt_id, @produkt.id %>
+
+        <div class="mb-3">
+          <%= f.submit "Odeslat objednávku", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= link_to "Zpátky", produkt_path(@produkt), class: "btn btn-outline-secondary" %>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <%= f.label :address, "Vaše adresa" %>
-    <%= f.text_area :address, class: "form-control", required: true %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :quantity, "Počet kusů (skladem: "  +  @produkt.pocet.to_s + " )"%>
-    <%= f.number_field :quantity, value: 1, class: "form-control", required: true, min: 1, max: @produkt.pocet %>
-  </div>
-
-  <%= hidden_field_tag :produkt_id, @produkt.id %>
-
-  <div class="mb-3">
-    <%= f.submit "Odeslat objednávku", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<%= link_to "Zpátky", produkt_path(@produkt), class: "btn btn-outline-secondary" %>
+</div>

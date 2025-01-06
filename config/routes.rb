@@ -8,6 +8,12 @@ Rails.application.routes.draw do
       get 'purchase'
     end
   end
-  resources :orders, only: [:create, :index]
+  resources :orders do
+    member do
+      patch :discard
+      patch :change_to_sent
+      patch :change_to_delivered
+    end
+  end
   resources :produkts
 end

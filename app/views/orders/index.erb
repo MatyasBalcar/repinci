@@ -1,14 +1,26 @@
 <h1 style="text-align: center">Objednavky</h1>
 
+<div class="mb-3">
+  <%= form_with url: orders_path, method: :get, local: true do %>
+    <div class="form-check">
+      <%= check_box_tag :show_discarded, 1, params[:show_discarded] == "1", class: "form-check-input", onchange: "this.form.submit();" %>
+      <%= label_tag :show_discarded, "Ukazat dokoncene objednavky", class: "form-check-label" %>
+    </div>
+  <% end %>
+</div>
+
 <table class="table">
   <thead>
   <tr>
-    <th>#ID</th>
+    <th>Cislo objednavky</th>
     <th>Jmeno</th>
     <th>Adresa</th>
+    <th>Kontakty</th>
     <th>Pocet</th>
     <th>Produkt</th>
     <th>Objednavka zadana</th>
+    <th>Akce</th> <!-- Action column -->
+    <th>Stav objednavky</th>
   </tr>
   </thead>
   <tbody>
@@ -17,9 +29,24 @@
       <td><%= order.id %></td>
       <td><%= order.name %></td>
       <td><%= order.address %></td>
+      <td>
+        <p><%= order.email %></p>
+        <p><%= order.phone_number %></p>
+        <p><%= order.instagram %></p>
+      </td>
       <td><%= order.quantity %></td>
       <td><%= order.produkt.nazev %></td>
       <td><%= order.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+      <td>
+        <%if order.created? %>
+          <%= button_to "Odeslat", change_to_sent_order_path(order), method: :patch, class: "btn btn-primary", data: { confirm: "Opravdu odeslat" } %>
+        <%elsif order.sent?%>
+          <%= button_to "Dokonceno", change_to_delivered_order_path(order), method: :patch, class: "btn btn-success", data: { confirm: "Opravdu dokoncit" } %>
+        <%else %>
+          <p>Zadne akce</p>
+        <% end %>
+      </td>
+      <td><%=order.aasm_state %></td>
     </tr>
   <% end %>
   </tbody>
