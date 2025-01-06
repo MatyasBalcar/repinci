@@ -2,7 +2,7 @@ class ProduktsController < ApplicationController
   before_action :set_produkt, only: %i[ show edit update destroy ]
   def purchase
     @produkt = Produkt.find(params[:id]) # Fetch the product based on the ID
-  end 
+  end
   # GET /produkts or /produkts.json
   def index
     @produkts = Produkt.all
@@ -40,7 +40,7 @@ class ProduktsController < ApplicationController
   def update
     respond_to do |format|
       if @produkt.update(produkt_params)
-        format.html { redirect_to produkts_path, notice: "Produkt was successfully updated." }
+        format.html { redirect_to @produkt, notice: "Produkt was successfully updated." }
         format.json { render :show, status: :ok, location: @produkt }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -28,6 +28,11 @@
 
           </div>
         <% end %>
+        <%if user_signed_in? %>
+        <div class="mb-3">
+          <%= link_to "Upravit produkt", edit_produkt_path(@produkt), class: "btn btn-warning" %>
+        </div>
+        <% end %>
 
         <div class="mt-auto">
           <%= link_to "Zpátky na produkty", produkts_path, class: "btn btn-outline-secondary" %>

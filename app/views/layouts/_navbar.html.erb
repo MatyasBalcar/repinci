@@ -11,9 +11,23 @@
       <li class="nav-item">
         <a class="nav-link" href="/produkts">Eshop</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/orders">Objednavky</a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Objednavky</a>
+        </li>
+        <li>
+          <%= link_to "Admin odhlaseni", destroy_user_session_path, method: :get, class: "btn btn-danger" %>
+        </li>
+        <li>
+          <%= link_to "Pridat produkt", new_produkt_path, class:"btn btn-outline-primary" %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to "Admin prihlaseni", new_user_session_path, class: "btn btn-primary" %>
+
+        </li>
+      <% end %>
+
     </ul>
   </div>
 </nav>
