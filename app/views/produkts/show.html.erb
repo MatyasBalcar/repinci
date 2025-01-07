@@ -6,7 +6,7 @@
       <!-- Image on the Left -->
       <div class="col-md-4">
         <% if @produkt.obrazek.attached? %>
-          <%= image_tag @produkt.obrazek, style: "max-width: 300px; max-height: 300px;" %>
+          <%= image_tag @produkt.obrazek, style: "max-width:25rem; max-height: 25rem;" %>
         <% else %>
           <img class="card-img-top" style="max-width: 300px; max-height: 300px" src="<%= @produkt.obrazek %>" alt="neni obrazek" onerror="this.onerror=null; this.src='/repinek.png';">
         <% end %>
