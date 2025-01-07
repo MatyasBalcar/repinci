@@ -24,7 +24,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @orders.each do |order| %>
+  <% @orders.order(:created_at).reverse.each do |order| %>
     <tr>
       <td><%= order.id %></td>
       <td><%= order.name %></td>
