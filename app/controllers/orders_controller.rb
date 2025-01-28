@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
 
   def index
-    if params[:show_discarded] == "1"
-      @orders = Order.all # Show both kept and discarded orders
-    else
-      @orders = Order.kept # Show only kept orders
-    end
+    @orders = if params[:show_discarded] == "1"
+                Order.all # Show both kept and discarded orders
+              else
+                Order.kept # Show only kept orders
+              end
   end
 
   def create
